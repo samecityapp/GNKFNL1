@@ -16,9 +16,10 @@ type HotelDetailsProps = {
   instagramUrl?: string;
   googleMapsUrl?: string;
   tags?: Array<{ name: string; slug: string; icon?: string }>;
+  coordinates?: { lat: number; lng: number };
 };
 
-export function HotelDetails({ features, tabs, mapImageUrl, location, websiteUrl, instagramUrl, googleMapsUrl, tags }: HotelDetailsProps) {
+export function HotelDetails({ features, tabs, mapImageUrl, location, websiteUrl, instagramUrl, googleMapsUrl, tags, coordinates }: HotelDetailsProps) {
   return (
     <>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
@@ -71,7 +72,7 @@ export function HotelDetails({ features, tabs, mapImageUrl, location, websiteUrl
           <div className="bg-white border border-gray-200 rounded-3xl shadow-sm overflow-hidden">
             <div className="p-10">
               <h2 className="text-3xl font-bold text-gray-900 mb-6">Yakında Ne Yenir</h2>
-              <NearbyPlacesTab location={location} />
+              <NearbyPlacesTab location={location} coordinates={coordinates} />
             </div>
           </div>
         </div>

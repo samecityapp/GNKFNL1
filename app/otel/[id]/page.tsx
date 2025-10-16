@@ -112,6 +112,7 @@ export default async function HotelDetailPage({ params }: Props) {
           instagramUrl={hotel.instagram_url}
           googleMapsUrl={hotel.google_maps_url}
           tags={hotelTagsWithIcons}
+          coordinates={hotel.coordinates}
         />
 
         <RelatedArticles location={hotel.location.split(',')[0].trim()} />

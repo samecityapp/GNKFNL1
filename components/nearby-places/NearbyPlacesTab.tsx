@@ -13,9 +13,10 @@ const RestaurantDetailsModal = dynamic(() =>
 
 interface NearbyPlacesTabProps {
   location: string;
+  coordinates?: { lat: number; lng: number };
 }
 
-export function NearbyPlacesTab({ location }: NearbyPlacesTabProps) {
+export function NearbyPlacesTab({ location, coordinates }: NearbyPlacesTabProps) {
   const [categories, setCategories] = useState<RestaurantCategory[]>([]);
   const [activeCategory, setActiveCategory] = useState<string>('');
   const [selectedRestaurant, setSelectedRestaurant] = useState<Restaurant | null>(null);
