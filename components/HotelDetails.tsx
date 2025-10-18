@@ -10,6 +10,7 @@ type HotelDetailsProps = {
     about: string;
     rules: string;
   };
+  mapImageUrl: string;
   location: string;
   websiteUrl?: string;
   instagramUrl?: string;
@@ -18,7 +19,7 @@ type HotelDetailsProps = {
   coordinates?: { lat: number; lng: number };
 };
 
-export function HotelDetails({ features, tabs, location, websiteUrl, instagramUrl, googleMapsUrl, tags, coordinates }: HotelDetailsProps) {
+export function HotelDetails({ features, tabs, mapImageUrl, location, websiteUrl, instagramUrl, googleMapsUrl, tags, coordinates }: HotelDetailsProps) {
   return (
     <>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">

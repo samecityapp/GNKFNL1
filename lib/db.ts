@@ -199,8 +199,7 @@ export const db = {
         video_thumbnail_url: row.video_thumbnail_url || '',
         website_url: row.website_url || '',
         instagram_url: row.instagram_url || '',
-        google_maps_url: row.google_maps_url || '',
-        how_to_get_there: row.how_to_get_there || ''
+        google_maps_url: row.google_maps_url || ''
       };
     }
   },
