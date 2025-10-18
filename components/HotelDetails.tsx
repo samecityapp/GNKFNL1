@@ -77,34 +77,7 @@ export function HotelDetails({ features, tabs, mapImageUrl, location, websiteUrl
           </div>
         </div>
 
-        <div className="lg:col-span-1 flex flex-col gap-3 sm:gap-4">
-          {websiteUrl && (
-            <a
-              href={websiteUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 sm:py-6 px-4 sm:px-6 rounded-xl sm:rounded-2xl transition-colors shadow-lg hover:shadow-xl group"
-            >
-              <div className="flex items-center justify-center gap-2 sm:gap-3">
-                <span className="text-base sm:text-lg">Otele Git</span>
-                <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
-              </div>
-            </a>
-          )}
-
-          {instagramUrl && (
-            <a
-              href={instagramUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block w-full bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 hover:from-purple-700 hover:via-pink-700 hover:to-orange-600 text-white font-bold py-4 sm:py-6 px-4 sm:px-6 rounded-xl sm:rounded-2xl transition-all shadow-lg hover:shadow-xl group"
-            >
-              <div className="flex items-center justify-center gap-2 sm:gap-3">
-                <Instagram className="w-5 h-5 sm:w-6 sm:h-6 group-hover:scale-110 transition-transform" />
-                <span className="text-base sm:text-lg">Instagram</span>
-              </div>
-            </a>
-          )}
+        <div className="lg:col-span-1">
         </div>
       </div>
 
