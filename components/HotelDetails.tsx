@@ -22,24 +22,24 @@ type HotelDetailsProps = {
 export function HotelDetails({ features, tabs, mapImageUrl, location, websiteUrl, instagramUrl, googleMapsUrl, tags, coordinates }: HotelDetailsProps) {
   return (
     <>
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
-        <div className="lg:col-span-2 space-y-8">
-          <div className="bg-white border border-gray-200 rounded-3xl shadow-sm overflow-hidden">
-            <div className="p-10">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Otel Özellikleri</h2>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 mb-6">
+        <div className="lg:col-span-2 space-y-6 sm:space-y-8">
+          <div className="bg-white border border-gray-200 rounded-2xl sm:rounded-3xl shadow-sm overflow-hidden">
+            <div className="p-6 sm:p-8 lg:p-10">
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">Otel Özellikleri</h2>
               {tags && tags.length > 0 ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+                <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3">
                   {tags.map((tag, index) => {
                     const IconComponent = (LucideIcons as any)[tag.icon || 'Tag'] || LucideIcons.Tag;
                     return (
                       <div
                         key={index}
-                        className="flex items-center gap-3 p-4 bg-gradient-to-br from-blue-50 to-blue-100 border-2 border-blue-200 rounded-2xl hover:shadow-md transition-all group"
+                        className="flex items-center gap-2 sm:gap-3 p-3 sm:p-4 bg-gradient-to-br from-blue-50 to-blue-100 border-2 border-blue-200 rounded-xl sm:rounded-2xl hover:shadow-md transition-all group"
                       >
-                        <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                          <IconComponent className="w-5 h-5 text-white" />
+                        <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-blue-600 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                          <IconComponent className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                         </div>
-                        <span className="text-blue-900 font-semibold text-sm">{tag.name}</span>
+                        <span className="text-blue-900 font-semibold text-xs sm:text-sm leading-tight">{tag.name}</span>
                       </div>
                     );
                   })}
@@ -52,12 +52,12 @@ export function HotelDetails({ features, tabs, mapImageUrl, location, websiteUrl
             </div>
           </div>
 
-          <div className="bg-white border border-gray-200 rounded-3xl shadow-sm overflow-hidden">
-            <div className="p-10">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Neden Bu Otel</h2>
+          <div className="bg-white border border-gray-200 rounded-2xl sm:rounded-3xl shadow-sm overflow-hidden">
+            <div className="p-6 sm:p-8 lg:p-10">
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">Neden Bu Otel</h2>
               {tabs.about ? (
-                <div className="prose prose-lg max-w-none">
-                  <p className="text-gray-700 leading-relaxed whitespace-pre-line">
+                <div className="prose prose-sm sm:prose-base lg:prose-lg max-w-none">
+                  <p className="text-gray-700 text-sm sm:text-base leading-relaxed whitespace-pre-line">
                     {tabs.about}
                   </p>
                 </div>
@@ -69,25 +69,25 @@ export function HotelDetails({ features, tabs, mapImageUrl, location, websiteUrl
             </div>
           </div>
 
-          <div className="bg-white border border-gray-200 rounded-3xl shadow-sm overflow-hidden">
-            <div className="p-10">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Yakında Ne Yenir</h2>
+          <div className="bg-white border border-gray-200 rounded-2xl sm:rounded-3xl shadow-sm overflow-hidden">
+            <div className="p-6 sm:p-8 lg:p-10">
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">Yakında Ne Yenir</h2>
               <NearbyPlacesTab location={location} coordinates={coordinates} />
             </div>
           </div>
         </div>
 
-        <div className="lg:col-span-1 flex flex-col gap-4">
+        <div className="lg:col-span-1 flex flex-col gap-3 sm:gap-4">
           {websiteUrl && (
             <a
               href={websiteUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="block w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-6 px-6 rounded-2xl transition-colors shadow-lg hover:shadow-xl group"
+              className="block w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 sm:py-6 px-4 sm:px-6 rounded-xl sm:rounded-2xl transition-colors shadow-lg hover:shadow-xl group"
             >
-              <div className="flex items-center justify-center gap-3">
-                <span className="text-lg">Otele Git</span>
-                <ExternalLink className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              <div className="flex items-center justify-center gap-2 sm:gap-3">
+                <span className="text-base sm:text-lg">Otele Git</span>
+                <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
               </div>
             </a>
           )}
@@ -97,33 +97,33 @@ export function HotelDetails({ features, tabs, mapImageUrl, location, websiteUrl
               href={instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="block w-full bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 hover:from-purple-700 hover:via-pink-700 hover:to-orange-600 text-white font-bold py-6 px-6 rounded-2xl transition-all shadow-lg hover:shadow-xl group"
+              className="block w-full bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 hover:from-purple-700 hover:via-pink-700 hover:to-orange-600 text-white font-bold py-4 sm:py-6 px-4 sm:px-6 rounded-xl sm:rounded-2xl transition-all shadow-lg hover:shadow-xl group"
             >
-              <div className="flex items-center justify-center gap-3">
-                <Instagram className="w-6 h-6 group-hover:scale-110 transition-transform" />
-                <span className="text-lg">Instagram</span>
+              <div className="flex items-center justify-center gap-2 sm:gap-3">
+                <Instagram className="w-5 h-5 sm:w-6 sm:h-6 group-hover:scale-110 transition-transform" />
+                <span className="text-base sm:text-lg">Instagram</span>
               </div>
             </a>
           )}
         </div>
       </div>
 
-      <div className="bg-white border border-gray-200 rounded-3xl shadow-sm overflow-hidden">
-        <div className="p-8">
-          <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-            <MapPin className="w-6 h-6" />
+      <div className="bg-white border border-gray-200 rounded-2xl sm:rounded-3xl shadow-sm overflow-hidden">
+        <div className="p-6 sm:p-8">
+          <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+            <MapPin className="w-5 h-5 sm:w-6 sm:h-6" />
             Konum
           </h3>
-          <p className="text-gray-600 text-base mb-6">{location}</p>
+          <p className="text-gray-600 text-sm sm:text-base mb-6">{location}</p>
           {googleMapsUrl && (
             <a
               href={googleMapsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-8 rounded-xl transition-colors shadow-md hover:shadow-lg group"
+              className="inline-flex items-center gap-2 sm:gap-3 bg-green-600 hover:bg-green-700 text-white font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-xl transition-colors shadow-md hover:shadow-lg group"
             >
-              <Map className="w-5 h-5 group-hover:scale-110 transition-transform" />
-              <span>Haritada Gör</span>
+              <Map className="w-4 h-4 sm:w-5 sm:h-5 group-hover:scale-110 transition-transform" />
+              <span className="text-sm sm:text-base">Haritada Gör</span>
             </a>
           )}
         </div>

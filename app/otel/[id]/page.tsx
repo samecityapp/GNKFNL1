@@ -75,22 +75,21 @@ export default async function HotelDetailPage({ params }: Props) {
 
   return (
     <>
-      <div className="container mx-auto px-6 py-8">
+      <div className="container mx-auto px-4 sm:px-6 py-4 sm:py-8">
         <BackButton />
-        <div className="flex justify-between items-start mb-6">
-          <div>
-            <p className="text-sm text-gray-500 mb-2">Otel / {hotel.location} / {hotel.name}</p>
-            <h1 className="text-4xl font-bold text-gray-900">{hotel.name}</h1>
+        <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-6">
+          <div className="w-full sm:flex-1">
+            <p className="text-xs sm:text-sm text-gray-500 mb-2">Otel / {hotel.location} / {hotel.name}</p>
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">{hotel.name}</h1>
             <div className="flex items-center text-gray-600 mt-2">
               <MapPin size={16} className="mr-2" />
-              <span>{hotel.location}</span>
+              <span className="text-sm sm:text-base">{hotel.location}</span>
             </div>
           </div>
-          <div className="flex-shrink-0 flex items-center bg-blue-600 text-white p-4 rounded-xl text-center">
-            <div>
-              <p className="font-bold text-2xl">{rating.score}</p>
-              <p className="text-xs">{rating.text}</p>
-              <p className="text-xs mt-1">{rating.reviewCount} yorum</p>
+          <div className="flex-shrink-0 bg-blue-600 text-white px-6 py-4 rounded-xl shadow-lg">
+            <div className="text-center">
+              <p className="text-xs font-medium mb-1 opacity-90">GNK Puan</p>
+              <p className="font-bold text-4xl">{rating.score}</p>
             </div>
           </div>
         </div>
@@ -100,6 +99,25 @@ export default async function HotelDetailPage({ params }: Props) {
           videoUrl={hotel.video_url}
           videoThumbnailUrl={hotel.video_thumbnail_url}
         />
+
+        <div className="my-6 sm:my-8 bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-200 rounded-2xl p-6 sm:p-8 shadow-md">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+              <p className="text-sm text-green-700 font-medium mb-1">Gecelik Başlangıç Fiyatı</p>
+              <p className="text-3xl sm:text-4xl font-bold text-green-900">{hotel.price.toLocaleString('tr-TR')} ₺</p>
+            </div>
+            {hotel.website_url && (
+              <a
+                href={hotel.website_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-xl transition-colors shadow-md hover:shadow-lg whitespace-nowrap"
+              >
+                Rezervasyon Yap
+              </a>
+            )}
+          </div>
+        </div>
 
         <HotelDetails
           features={hotel.amenities || []}
