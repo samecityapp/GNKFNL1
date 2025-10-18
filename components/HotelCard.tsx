@@ -4,7 +4,7 @@ import { useState } from 'react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Star, MapPin, Play } from 'lucide-react';
+import { Star, MapPin, Heart, Wifi, Wind, Droplets, Play } from 'lucide-react';
 import { Hotel } from '@/lib/types';
 
 const VideoPlayer = dynamic(() => import('./VideoPlayer'), {
@@ -15,9 +15,16 @@ interface HotelCardProps {
   hotel: Hotel;
 }
 
+const amenityIcons: Record<string, JSX.Element> = {
+  Havuz: <Wind size={16} />,
+  WiFi: <Wifi size={16} />,
+  Spa: <Droplets size={16} />,
+};
+
 export default function HotelCard({ hotel }: HotelCardProps) {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
   const formattedPrice = new Intl.NumberFormat('tr-TR').format(hotel.price);
+  const featuredAmenities = hotel.amenities?.slice(0, 3) || [];
 
   const handleVideoClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -28,85 +35,119 @@ export default function HotelCard({ hotel }: HotelCardProps) {
   return (
     <>
       <Link href={`/otel/${hotel.id}`} className="block group">
-        <div className="w-full rounded-2xl overflow-hidden bg-gray-200 relative shadow-lg">
-          {hotel.video_url ? (
-            <div className="relative w-full" style={{ paddingBottom: '133.33%' }}>
-              {hotel.video_thumbnail_url ? (
-                <Image
-                  src={hotel.video_thumbnail_url}
-                  alt={hotel.name}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
-                  className="absolute inset-0 w-full h-full object-cover"
-                  priority={false}
-                  loading="lazy"
-                  quality={75}
-                />
-              ) : hotel.coverImageUrl ? (
-                <Image
-                  src={hotel.coverImageUrl}
-                  alt={hotel.name}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
-                  className="absolute inset-0 w-full h-full object-cover"
-                  priority={false}
-                  loading="lazy"
-                  quality={75}
-                />
-              ) : (
-                <div className="absolute inset-0 w-full h-full flex items-center justify-center bg-gray-100">
-                  <span className="text-gray-400">Video Kapak</span>
-                </div>
-              )}
-              <div
-                onClick={handleVideoClick}
-                className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors cursor-pointer"
-              >
-                <div className="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <Play className="w-8 h-8 text-gray-900 ml-1" fill="currentColor" />
+        <div className="relative overflow-hidden bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300">
+
+          {/* FOTOĞRAF ALANI */}
+          <div className="relative">
+            {hotel.video_url ? (
+              <div className="relative w-full aspect-[3/4]">
+                {hotel.video_thumbnail_url ? (
+                  <Image
+                    src={hotel.video_thumbnail_url}
+                    alt={hotel.name}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    priority={false}
+                    loading="lazy"
+                    quality={75}
+                  />
+                ) : hotel.coverImageUrl ? (
+                  <Image
+                    src={hotel.coverImageUrl}
+                    alt={hotel.name}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    priority={false}
+                    loading="lazy"
+                    quality={75}
+                  />
+                ) : (
+                  <div className="absolute inset-0 w-full h-full flex items-center justify-center bg-gray-100">
+                    <span className="text-gray-400">Video Kapak</span>
+                  </div>
+                )}
+                <div
+                  onClick={handleVideoClick}
+                  className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors cursor-pointer"
+                >
+                  <div className="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <Play className="w-8 h-8 text-gray-900 ml-1" fill="currentColor" />
+                  </div>
                 </div>
               </div>
-            </div>
-          ) : hotel.coverImageUrl ? (
-            <div className="relative w-full" style={{ paddingBottom: '133.33%' }}>
+            ) : hotel.coverImageUrl ? (
               <Image
                 src={hotel.coverImageUrl}
                 alt={hotel.name}
-                fill
+                width={400}
+                height={533}
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
-                className="object-cover group-hover:scale-105 transition-transform duration-300"
+                className="w-full aspect-[3/4] object-cover transition-transform duration-300 group-hover:scale-105"
                 priority={false}
               />
-            </div>
-          ) : (
-            <div className="w-full aspect-[3/4] flex items-center justify-center bg-gray-100">
-              <span className="text-gray-400">Resim Yok</span>
-            </div>
-          )}
+            ) : (
+              <div className="w-full aspect-[3/4] flex items-center justify-center bg-gray-100">
+                <span className="text-gray-400">Resim Yok</span>
+              </div>
+            )}
 
-        {hotel.price > 0 && (
-          <div className="absolute bottom-0 left-0 bg-gradient-to-t from-black/70 to-transparent w-full p-4">
-            <p className="text-white font-bold text-xl">
-              {formattedPrice}
-              <span className="text-sm font-normal"> TL / Gece</span>
-            </p>
-          </div>
-        )}
+            {/* Alttan Yukarı Gradient */}
+            <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-black/60 to-transparent" />
 
-        {hotel.gnkScore > 0 && (
-          <div className="absolute top-3 right-3 flex items-center gap-1 bg-black/60 text-white px-3 py-1.5 rounded-full text-sm font-bold backdrop-blur-sm">
-            <Star className="w-4 h-4 fill-current" />
-            <span>{hotel.gnkScore.toFixed(1)}</span>
+            {/* Favori Butonu (Sol Üst) */}
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+              }}
+              className="absolute top-3 left-3 bg-white/80 backdrop-blur-sm p-2 rounded-full text-gray-700 hover:text-red-500 transition-colors"
+            >
+              <Heart size={20} />
+            </button>
+
+            {/* Puan (Sağ Üst) */}
+            {hotel.gnkScore > 0 && (
+              <div className="absolute top-3 right-3 flex items-center bg-black/40 backdrop-blur-sm px-3 py-1 rounded-full text-white text-sm font-semibold">
+                <Star size={14} className="mr-1.5 fill-white" />
+                <span>{hotel.gnkScore.toFixed(1)}</span>
+              </div>
+            )}
+
+            {/* Fiyat (Sol Alt) */}
+            {hotel.price > 0 && (
+              <div className="absolute bottom-4 left-4 text-white">
+                <span className="text-2xl font-bold">{formattedPrice} TL</span>
+                <span className="text-sm"> / Gece</span>
+              </div>
+            )}
           </div>
-        )}
-      </div>
-      <div className="mt-4">
-        <h3 className="font-bold text-gray-900 text-lg truncate">{hotel.name}</h3>
-        <div className="flex items-center text-sm text-gray-500 mt-1">
-          <MapPin className="w-4 h-4 mr-1.5 flex-shrink-0" />
-          <p className="truncate">{hotel.location}</p>
+
+          {/* KARTIN ALT BİLGİ ALANI (2 SATIR) */}
+          <div className="p-4 space-y-3">
+            {/* 1. Satır: İsim ve Konum */}
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 truncate">{hotel.name}</h3>
+              <p className="flex items-center text-sm text-gray-500 mt-1">
+                <MapPin size={14} className="mr-1.5 flex-shrink-0" />
+                <span className="truncate">{hotel.location}</span>
+              </p>
+            </div>
+
+            {/* 2. Satır: Öne Çıkan Olanaklar */}
+            {featuredAmenities.length > 0 && (
+              <div className="flex items-center space-x-4 text-gray-600">
+                {featuredAmenities.map((amenity) => (
+                  <div key={amenity} className="flex items-center text-xs">
+                    {amenityIcons[amenity] || null}
+                    <span className="ml-1.5">{amenity}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
-      </div>
       </Link>
 
       {hotel.video_url && (
