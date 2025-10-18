@@ -18,6 +18,7 @@ export type Hotel = {
   website_url?: string;
   instagram_url?: string;
   google_maps_url?: string;
+  how_to_get_there?: string;
 };
 
 export type Group = {
