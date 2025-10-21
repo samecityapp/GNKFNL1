@@ -96,19 +96,23 @@ export default async function HotelDetailPage({ params }: Props) {
         </div>
 
         {/* Mobil Görünüm */}
-        <div className="sm:hidden mb-6 relative">
-          <p className="text-xs text-gray-500 mb-2 pr-16">Otel / {hotel.location} / {hotel.name}</p>
-          <h1 className="text-2xl font-bold text-gray-900 pr-16">{hotel.name}</h1>
-          <div className="flex items-center text-gray-600 mt-1 pr-16">
-            <MapPin size={14} className="mr-1.5" />
-            <span className="text-sm">{hotel.location}</span>
-          </div>
+        <div className="sm:hidden mb-6">
+          <p className="text-xs text-gray-500 mb-2">Otel / {hotel.location} / {hotel.name}</p>
+          <div className="flex items-start justify-between gap-3">
+            <div className="flex-1">
+              <h1 className="text-2xl font-bold text-gray-900">{hotel.name}</h1>
+              <div className="flex items-center text-gray-600 mt-1">
+                <MapPin size={14} className="mr-1.5 flex-shrink-0" />
+                <span className="text-sm">{hotel.location}</span>
+              </div>
+            </div>
 
-          {/* Küçük puan kutusu - sağ üstte */}
-          <div className="absolute top-0 right-0 border border-blue-600 bg-white px-2 py-1 rounded-lg shadow-sm">
-            <div className="text-center">
-              <p className="text-[9px] font-medium text-gray-600 leading-tight">GNK</p>
-              <p className="font-bold text-lg text-blue-600 leading-tight">{rating.score}</p>
+            {/* Küçük puan kutusu - otel ismi ile aynı hizada */}
+            <div className="flex-shrink-0 border border-blue-600 bg-white px-2 py-1.5 rounded-lg shadow-sm">
+              <div className="text-center">
+                <p className="text-[8px] font-medium text-gray-600 leading-tight whitespace-nowrap">GNK Puan</p>
+                <p className="font-bold text-lg text-blue-600 leading-tight">{rating.score}</p>
+              </div>
             </div>
           </div>
         </div>
