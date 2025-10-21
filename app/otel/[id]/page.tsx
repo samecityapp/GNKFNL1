@@ -77,19 +77,38 @@ export default async function HotelDetailPage({ params }: Props) {
     <>
       <div className="container mx-auto px-4 sm:px-6 py-4 sm:py-8">
         <BackButton />
-        <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-6">
-          <div className="w-full sm:flex-1">
-            <p className="text-xs sm:text-sm text-gray-500 mb-2">Otel / {hotel.location} / {hotel.name}</p>
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">{hotel.name}</h1>
+        {/* Desktop Görünüm */}
+        <div className="hidden sm:flex flex-row justify-between items-start gap-4 mb-6">
+          <div className="flex-1">
+            <p className="text-sm text-gray-500 mb-2">Otel / {hotel.location} / {hotel.name}</p>
+            <h1 className="text-3xl lg:text-4xl font-bold text-gray-900">{hotel.name}</h1>
             <div className="flex items-center text-gray-600 mt-2">
               <MapPin size={16} className="mr-2" />
-              <span className="text-sm sm:text-base">{hotel.location}</span>
+              <span className="text-base">{hotel.location}</span>
             </div>
           </div>
           <div className="flex-shrink-0 border-2 border-blue-600 bg-white px-6 py-4 rounded-xl shadow-sm">
             <div className="text-center">
               <p className="text-xs font-medium mb-1 text-gray-600">GNK Puan</p>
               <p className="font-bold text-4xl text-blue-600">{rating.score}</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobil Görünüm */}
+        <div className="sm:hidden mb-6 relative">
+          <p className="text-xs text-gray-500 mb-2 pr-16">Otel / {hotel.location} / {hotel.name}</p>
+          <h1 className="text-2xl font-bold text-gray-900 pr-16">{hotel.name}</h1>
+          <div className="flex items-center text-gray-600 mt-1 pr-16">
+            <MapPin size={14} className="mr-1.5" />
+            <span className="text-sm">{hotel.location}</span>
+          </div>
+
+          {/* Küçük puan kutusu - sağ üstte */}
+          <div className="absolute top-0 right-0 border border-blue-600 bg-white px-2 py-1 rounded-lg shadow-sm">
+            <div className="text-center">
+              <p className="text-[9px] font-medium text-gray-600 leading-tight">GNK</p>
+              <p className="font-bold text-lg text-blue-600 leading-tight">{rating.score}</p>
             </div>
           </div>
         </div>
