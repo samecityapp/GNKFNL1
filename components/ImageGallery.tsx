@@ -182,6 +182,7 @@ export function ImageGallery({ images, videoUrl, videoThumbnailUrl }: ImageGalle
           <div className="relative w-full h-full flex items-center justify-center px-4 sm:px-20" onClick={(e) => e.stopPropagation()}>
             <div className="relative w-full h-full max-w-7xl max-h-[90vh]">
               <Image
+                key={`lightbox-${selectedImageIndex}`}
                 src={displayImages[selectedImageIndex]}
                 alt={`Fotoğraf ${selectedImageIndex + 1}`}
                 fill
