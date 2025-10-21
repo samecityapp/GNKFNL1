@@ -179,14 +179,15 @@ export function ImageGallery({ images, videoUrl, videoThumbnailUrl }: ImageGalle
             </button>
           )}
 
-          <div className="relative max-w-7xl max-h-[90vh] px-20" onClick={(e) => e.stopPropagation()}>
-            <div className="relative w-full h-[90vh]">
+          <div className="relative w-full h-full flex items-center justify-center px-4 sm:px-20" onClick={(e) => e.stopPropagation()}>
+            <div className="relative w-full h-full max-w-7xl max-h-[90vh]">
               <Image
                 src={displayImages[selectedImageIndex]}
                 alt={`Fotoğraf ${selectedImageIndex + 1}`}
                 fill
-                sizes="100vw"
-                className="object-contain rounded-2xl"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 80vw"
+                className="object-contain"
+                priority
               />
             </div>
             <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 bg-black/60 text-white px-6 py-3 rounded-full text-sm font-semibold backdrop-blur-sm">
