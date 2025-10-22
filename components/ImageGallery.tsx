@@ -44,8 +44,8 @@ export function ImageGallery({ images, videoUrl, videoThumbnailUrl }: ImageGalle
 
   return (
     <>
-      <div className="flex gap-2 mb-8">
-        <div className="relative w-[380px] h-[500px] bg-gray-100 rounded-2xl overflow-hidden cursor-pointer group flex-shrink-0">
+      <div className="flex gap-2 mb-0">
+        <div className="relative w-[380px] h-[550px] bg-gray-100 rounded-2xl overflow-hidden cursor-pointer group flex-shrink-0">
           {videoUrl ? (
             <div className="relative w-full h-full" onClick={() => setIsVideoOpen(true)}>
               {videoThumbnailUrl ? (
@@ -90,7 +90,7 @@ export function ImageGallery({ images, videoUrl, videoThumbnailUrl }: ImageGalle
         <div className="flex flex-col gap-2">
           {displayImages[1] && (
             <div
-              className="relative w-[260px] h-[243px] bg-gray-100 rounded-2xl overflow-hidden cursor-pointer group"
+              className="relative w-[260px] h-[268px] bg-gray-100 rounded-2xl overflow-hidden cursor-pointer group"
               onClick={() => setSelectedImageIndex(1)}
             >
               <Image
@@ -105,7 +105,7 @@ export function ImageGallery({ images, videoUrl, videoThumbnailUrl }: ImageGalle
 
           {displayImages[2] && (
             <div
-              className="relative w-[260px] h-[243px] bg-gray-100 rounded-2xl overflow-hidden cursor-pointer group"
+              className="relative w-[260px] h-[268px] bg-gray-100 rounded-2xl overflow-hidden cursor-pointer group"
               onClick={() => setSelectedImageIndex(2)}
             >
               <Image
@@ -129,7 +129,7 @@ export function ImageGallery({ images, videoUrl, videoThumbnailUrl }: ImageGalle
 
         {displayImages[3] && (
           <div
-            className="relative w-[380px] h-[500px] bg-gray-100 rounded-2xl overflow-hidden cursor-pointer group flex-shrink-0"
+            className="relative w-[380px] h-[550px] bg-gray-100 rounded-2xl overflow-hidden cursor-pointer group flex-shrink-0"
             onClick={() => setSelectedImageIndex(3)}
           >
             <Image
