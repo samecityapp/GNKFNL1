@@ -4,12 +4,27 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   images: {
-    domains: [
-      'aknhkpevrlpsrfxzqtop.supabase.co',
-      'images.pexels.com',
-      'api.mapbox.com',
-      'placehold.co',
-      'maps.gstatic.com'
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'aknhkpevrlpsrfxzqtop.supabase.co',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.pexels.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'api.mapbox.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'placehold.co',
+      },
+      {
+        protocol: 'https',
+        hostname: 'maps.gstatic.com',
+      },
     ],
     formats: ['image/webp', 'image/avif'],
     minimumCacheTTL: 60 * 60 * 24,

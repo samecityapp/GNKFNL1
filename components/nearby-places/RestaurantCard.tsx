@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { Restaurant } from '@/lib/types';
 import { Info, Star } from 'lucide-react';
 
@@ -9,11 +10,15 @@ type RestaurantCardProps = {
 export function RestaurantCard({ restaurant, onViewDetails }: RestaurantCardProps) {
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-      <img
-        src={restaurant.image_url}
-        alt={restaurant.name}
-        className="w-full h-48 object-cover"
-      />
+      <div className="relative w-full h-48">
+        <Image
+          src={restaurant.image_url}
+          alt={restaurant.name}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className="object-cover"
+        />
+      </div>
       <div className="p-4">
         <h3 className="text-lg font-bold mb-2">{restaurant.name}</h3>
         <p className="text-gray-600 text-sm mb-4 line-clamp-3">{restaurant.description}</p>
