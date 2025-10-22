@@ -8,7 +8,8 @@ const nextConfig = {
       'aknhkpevrlpsrfxzqtop.supabase.co',
       'images.pexels.com',
       'api.mapbox.com',
-      'placehold.co'
+      'placehold.co',
+      'maps.gstatic.com'
     ],
     formats: ['image/webp', 'image/avif'],
     minimumCacheTTL: 60 * 60 * 24,
