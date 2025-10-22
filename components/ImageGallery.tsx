@@ -44,7 +44,8 @@ export function ImageGallery({ images, videoUrl, videoThumbnailUrl }: ImageGalle
 
   return (
     <>
-      <div className="flex gap-2 mb-8">
+      {/* Desktop Görünüm */}
+      <div className="hidden sm:flex gap-2 mb-8">
         <div className="relative w-[380px] h-[500px] bg-gray-100 rounded-2xl overflow-hidden cursor-pointer group flex-shrink-0">
           {videoUrl ? (
             <div className="relative w-full h-full" onClick={() => setIsVideoOpen(true)}>
@@ -141,6 +142,57 @@ export function ImageGallery({ images, videoUrl, videoThumbnailUrl }: ImageGalle
             />
           </div>
         )}
+      </div>
+
+      {/* Mobil Görünüm */}
+      <div className="sm:hidden mb-0">
+        <div className="relative w-full h-[400px] bg-gray-100 overflow-hidden cursor-pointer group">
+          {videoUrl ? (
+            <div className="relative w-full h-full" onClick={() => setIsVideoOpen(true)}>
+              {videoThumbnailUrl ? (
+                <Image
+                  src={videoThumbnailUrl}
+                  alt="Video thumbnail"
+                  fill
+                  sizes="100vw"
+                  className="object-cover"
+                  priority
+                />
+              ) : displayImages[0] ? (
+                <Image
+                  src={displayImages[0]}
+                  alt="Video thumbnail"
+                  fill
+                  sizes="100vw"
+                  className="object-cover"
+                  priority
+                />
+              ) : null}
+              <div className="absolute inset-0 flex items-center justify-center bg-black/20">
+                <div className="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center">
+                  <Play className="w-8 h-8 text-gray-900 ml-1" fill="currentColor" />
+                </div>
+              </div>
+            </div>
+          ) : displayImages[0] ? (
+            <div className="relative w-full h-full" onClick={() => setSelectedImageIndex(0)}>
+              <Image
+                src={displayImages[0]}
+                alt="Ana resim"
+                fill
+                sizes="100vw"
+                className="object-cover"
+                priority
+              />
+              {/* Fotoğraf sayısı göstergesi */}
+              {totalImages > 1 && (
+                <div className="absolute bottom-4 right-4 bg-black/60 text-white px-3 py-1.5 rounded-full text-sm font-semibold backdrop-blur-sm">
+                  1 / {totalImages}
+                </div>
+              )}
+            </div>
+          ) : null}
+        </div>
       </div>
 
       {selectedImageIndex !== null && (
